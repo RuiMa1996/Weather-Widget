@@ -16,6 +16,18 @@ navigator.geolocation.getCurrentPosition(position => {
   })
   .then(localWeather => {
     displayLocalWeather(localWeather);
+  });
+
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${localLat}&lon=${localLong}&appid=${myWeatherAPIKey}`)
+  .then(resp => {
+    if(resp.ok) {
+      return resp.json();
+    } else {
+      throw new Error('No json found');
+    }
+  })
+  .then(forecast => {
+    console.log(forecast);
   })
 });
 
