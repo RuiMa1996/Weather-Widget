@@ -1,4 +1,5 @@
 const myWeatherAPIKey = '04901bda849c03c85e34cc2001a5c026';
+const currentWeather = document.querySelector('.current-conditions');
 
 navigator.geolocation.getCurrentPosition(position => {
   localLat = position.coords.latitude;
