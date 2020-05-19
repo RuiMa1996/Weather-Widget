@@ -27,7 +27,7 @@ function displayLocalWeather(info) {
     <img src="http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png"/>
     <div class="current">
       <div class="temp">${tempConvert(info.main.temp)}℃</div>
-      <div class="condition"></div>
+      <div class="condition">${info.weather[0].description}</div>
     </div>
   `)
 }
