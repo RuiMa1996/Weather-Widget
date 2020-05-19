@@ -1,4 +1,5 @@
 const myWeatherAPIKey = '04901bda849c03c85e34cc2001a5c026';
+const currentWeather = document.querySelector('.current-conditions');
 
 navigator.geolocation.getCurrentPosition(position => {
   localLat = position.coords.latitude;
@@ -14,5 +15,23 @@ navigator.geolocation.getCurrentPosition(position => {
   })
   .then(localWeather => {
     console.log(localWeather);
+    displayLocalWeather(localWeather);
   })
 });
+
+function displayLocalWeather(info) {
+  currentWeather.innerHTML = "";
+
+  currentWeather.insertAdjacentHTML('afterbegin', `
+    <h2>Current Conditions</h2>
+    <img src="http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png"/>
+    <div class="current">
+      <div class="temp">${tempConvert(info.main.temp)}℃</div>
+      <div class="condition">${info.weather[0].description}</div>
+    </div>
+  `)
+}
+
+function tempConvert (kelvinTemp) {
+  return Math.round(kelvinTemp - 273.15);
+}
