@@ -1,6 +1,7 @@
 const myWeatherAPIKey = '04901bda849c03c85e34cc2001a5c026';
 const currentWeather = document.querySelector('.current-conditions');
 const forecastWeather = document.querySelector('.forecast');
+const dateOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 navigator.geolocation.getCurrentPosition(position => {
   localLat = position.coords.latitude;
@@ -28,6 +29,7 @@ navigator.geolocation.getCurrentPosition(position => {
   })
   .then(forecast => {
     console.log(forecast);
+    displayForecast(forecast);
   })
 });
 
@@ -47,3 +49,15 @@ function displayLocalWeather(info) {
 function tempConvert (kelvinTemp) {
   return Math.round(kelvinTemp - 273.15);
 }
+
+function displayForecast(forecastInfo) {
+  
+}
+
+
+
+function convertTime(time) {
+  let newDate = new Date(time);
+  return dateOfWeek[newDate.getDay()];
+}
+
