@@ -62,23 +62,38 @@ function displayForecast(forecastInfo) {
       }
     }
   }
-  console.log(newDateObj);
+
+  let weatherHtml = "";
 
   for (let weekdays in newDateObj) {
     let date = new Date();
     let highTemp = [];
     let lowTemp = [];
+
     if (weekdays !== dateOfWeek[date.getDay()]) {
+      weatherHtml += `
+      <div class="day">
+        <h3>${weekdays}</h3>
+        <img src="http://openweathermap.org/img/wn/${newDateObj[weekdays][4].weather[0].icon}@2x.png" />
+        <div class="description">${newDateObj[weekdays][4].weather[0].description}</div>
+    `
       for (let results of newDateObj[weekdays]) {
         highTemp.push(results.main.temp_max);
         highTemp.sort((a, b) => b - a);
         lowTemp.push(results.main.temp_min);
         lowTemp.sort((a, b) => a - b);
       }
-      console.log(highTemp);
-      console.log(lowTemp);
+      weatherHtml += ` 
+      <div class="temp">
+        <span class="high">${tempConvert(highTemp[0])}℃</span>/<span class="low">${tempConvert(lowTemp[0])}℃</span>
+      </div>`
     }
+
+    weatherHtml +="</div>"
   }
+
+  forecastWeather.innerHTML = "";
+  forecastWeather.insertAdjacentHTML('beforeend', weatherHtml)
 }
 
 
