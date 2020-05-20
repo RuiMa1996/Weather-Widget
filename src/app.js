@@ -28,7 +28,6 @@ navigator.geolocation.getCurrentPosition(position => {
       }
     })
     .then(forecast => {
-      console.log(forecast);
       displayForecast(forecast);
     })
 });
