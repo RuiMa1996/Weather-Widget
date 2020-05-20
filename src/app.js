@@ -51,7 +51,21 @@ function tempConvert (kelvinTemp) {
 }
 
 function displayForecast(forecastInfo) {
-  
+  newDateObj = {};
+
+  for(let objOfArray of forecastInfo.list) {
+      if(objOfArray.dt_txt.includes(objOfArray.dt_txt.substring(0, 11))) {
+        if(newDateObj[convertTime(objOfArray.dt_txt)] === undefined) {
+          newDateObj[convertTime(objOfArray.dt_txt)] = [objOfArray];
+        } else {
+          newDateObj[convertTime(objOfArray.dt_txt)].push(objOfArray);
+        }
+      }
+    }
+
+
+  console.log(newDateObj);
+  return newDateObj;
 }
 
 
