@@ -17,6 +17,15 @@
   },
   "homepage": "https://github.com/RuiMa1996/Weather-Widget-Assignment#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "gulp-clean-css": "^4.3.0",
+    "gulp-imagemin": "^7.1.0"
   }
 }

@@ -4,8 +4,8 @@ const forecastWeather = document.querySelector('.forecast');
 const dateOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 navigator.geolocation.getCurrentPosition(position => {
-  localLat = position.coords.latitude;
-  localLong = position.coords.longitude;
+  const localLat = position.coords.latitude;
+  const localLong = position.coords.longitude;
 
   fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${localLat}&lon=${localLong}&appid=${myWeatherAPIKey}`)
     .then(resp => {
@@ -50,7 +50,7 @@ function tempConvert(kelvinTemp) {
 }
 
 function displayForecast(forecastInfo) {
-  newDateObj = {};
+  let newDateObj = {};
 
   for (let objOfArray of forecastInfo.list) {
     if (objOfArray.dt_txt.includes(objOfArray.dt_txt.substring(0, 11))) {
