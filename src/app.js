@@ -82,7 +82,8 @@ function displayForecast(forecastInfo) {
     `
     }
 
-     if (weekdays !== dateOfWeek[date.getDay()]) {
+    
+     if (weekdays !== dateOfWeek[date.getDay()] && newDateObj[weekdays].length >= 5) {
       for (let results of newDateObj[weekdays]) {
         highTemp.push(results.main.temp_max);
         highTemp.sort((a, b) => b - a);
