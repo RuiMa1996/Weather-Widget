@@ -61,21 +61,28 @@ function displayForecast(forecastInfo) {
       }
     }
   }
-
   let weatherHtml = "";
-
+  
   for (let weekdays in newDateObj) {
     let date = new Date();
     let highTemp = [];
     let lowTemp = [];
 
-    if (weekdays !== dateOfWeek[date.getDay()]) {
+    let noonWeather = newDateObj[weekdays].filter((ele) => {
+      const date = new Date(ele.dt_txt);
+      return date.getHours() === 12;
+    })
+    
+    if(noonWeather[0] !== undefined) {
       weatherHtml += `
       <div class="day">
         <h3>${weekdays}</h3>
-        <img src="http://openweathermap.org/img/wn/${newDateObj[weekdays][4].weather[0].icon}@2x.png" />
-        <div class="description">${newDateObj[weekdays][4].weather[0].description}</div>
+        <img src="http://openweathermap.org/img/wn/${noonWeather[0]["weather"][0].icon}@2x.png" />
+        <div class="description">${noonWeather[0]["weather"][0].description}</div>
     `
+    }
+
+     if (weekdays !== dateOfWeek[date.getDay()]) {
       for (let results of newDateObj[weekdays]) {
         highTemp.push(results.main.temp_max);
         highTemp.sort((a, b) => b - a);
@@ -94,7 +101,6 @@ function displayForecast(forecastInfo) {
   forecastWeather.innerHTML = "";
   forecastWeather.insertAdjacentHTML('beforeend', weatherHtml)
 }
-
 
 function convertTime(time) {
   let newDate = new Date(time);
